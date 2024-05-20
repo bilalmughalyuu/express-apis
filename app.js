@@ -3,15 +3,18 @@ const path = require('path');
 const app = express();
 
 const logger = require('./logger')
+const authorize = require('./authorize')
 
 const axios = require('axios');
 
 const { products } = require('./data');
 
+app.use([logger, authorize])
+
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', logger,(req, res) => {
+app.get('/', (req, res) => {
     console.log('Sending home page');
     res.status(200).sendFile(path.resolve(__dirname, 'index.html'));
 });
