@@ -7,9 +7,9 @@ const authorize = require('./authorize')
 
 const axios = require('axios');
 
-const { products } = require('./data');
+const { products, people } = require('./data');
 
-app.use([logger, authorize])
+// app.use([logger, authorize])
 
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
@@ -18,6 +18,10 @@ app.get('/', (req, res) => {
     console.log('Sending home page');
     res.status(200).sendFile(path.resolve(__dirname, 'index.html'));
 });
+
+app.get('/api/people', (req, res) => {
+    res.status(200).json({sucess: true, data: people})
+})
 
 app.get('/omni-food', (req, res) => {
     res.status(200).sendFile(path.resolve(__dirname, '/index.html'));
