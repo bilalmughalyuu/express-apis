@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/people', (req, res) => {
-    res.status(200).json({sucess: true, data: people})
+    res.status(200).json({ sucess: true, data: people })
 })
 
 app.get('/omni-food', (req, res) => {
